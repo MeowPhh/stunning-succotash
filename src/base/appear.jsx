@@ -1,70 +1,65 @@
-import React, { useEffect, useState } from 'react'
-import classes from './appear.module.css'
-import Select from './Select';
-import Input from './Input';
-import axios from 'axios'
+import React, { useState } from "react";
+import classes from "./appear.module.css";
+import Select from "./Select";
+//import Input from './Input';
+//import axios from 'axios'
 
 const Appear = () => {
-    const [val, setVal] = useState();
-    const access_key = '4b8d4019215160d9ecdb87aac8a3d9c6'
-    const from = 'EUR';
-    const to = 'RUB';
-    const amount = '111';
+  const [num1, setNum1] = useState(0);
+  const [num2, setNum2] = useState(0);
 
-    useEffect(()=>{
-        getData();
-        
-    },[])
+  const sendNum1 = (number) => {
+    //console.log(current);
+    setNum1(number);
+    // console.log("num");
+    // console.log(number);
+  };
+  const sendNum2 = (number) => {
+    //console.log(current);
+    setNum2(number);
+    // console.log("num");
+    // console.log(number);
+  };
 
-    async function getData(){
-        const curren = await axios.get('http://data.fixer.io/api/convert?access_key=' + access_key + '&from' + from + '&to'+ to +'&amount' + amount)
-        //console.log(curren.data.rates);
-        console.log(curren.data);
-    }
-    //console.log(val);
-    
-    return (
-    
-
+  //
+  
+  return (
     <div className={classes.Main}>
-            <h1> <strong>Конвертер валют</strong> </h1>
-            <div className={classes.wrapper}>
-            
-                <h3>Вы переводите из</h3>
+      <h1>
+        {" "}
+        <strong>Конвертер валют</strong>{" "}
+      </h1>
+      <div className={classes.wrapper}>
+        <h3>Вы переводите из</h3>
 
-                <div className="stolbic">
-                
-                <div className={classes.s1}>
-                <Select value = {"222"}/>
-                <div className={classes.text}>в</div>
-                <Select></Select>
+        <div className="stolbic">
+          <div className={classes.s1}>
+            <Select num1={num1} num2={num2}></Select>
 
-            </div>
+            <div className={classes.text}>в</div>
 
+            <Select num1={num1} num2={num2}></Select>
+          </div>
 
+          <div className={classes.f_select_money}>
+            <input
+              type="number"
+              value={num1}
+              onChange={(e) => sendNum1(e.target.value)}
+            />
 
-
-            <div className={classes.f_select_money}>
-               
-                <input  type="number" 
-                value = {val} 
-                onChange={(e)=>setVal(e.target.value)}/>
-                
-                <div className={classes.text}>=</div>
-                <input type="number" />
-
-
-            </div>
+            <div className={classes.text}>=</div>
+            <input
+              type="number"
+              value={num2}
+              onChange={(e) => sendNum2(e.target.value)}
+            />
+          </div>
         </div>
-        
-        </div>
-        <div className={classes.but}>Поменять валюты местами</div>
-
-
-
-
+      </div>
+      <div className={classes.but}>Поменять валюты местами</div>
     </div>
-  )
-}
+  );
+};
 
-export default Appear
+export default Appear;

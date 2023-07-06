@@ -1,11 +1,11 @@
-import logo from './logo.svg';
-import './App.css';
-import Appear from './base/appear';
+import logo from "./logo.svg";
+import "./App.css";
+import Appear from "./base/appear";
 
 function App() {
   return (
     <div className="App">
-     <Appear></Appear>
+      <Appear></Appear>
     </div>
   );
 }
