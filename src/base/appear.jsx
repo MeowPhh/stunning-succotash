@@ -1,25 +1,41 @@
 import React, { useState } from "react";
 import classes from "./appear.module.css";
 import Select from "./Select";
-//import Input from './Input';
-//import axios from 'axios'
+import Select2 from './Select2';
 
-const Appear = () => {
+
+const Appear = (props) => {
   const [num1, setNum1] = useState(0);
   const [num2, setNum2] = useState(0);
+  const [currentNew1, setCurrentNew1] = useState(0.0);
+  const [currentNew2, setCurrentNew2] = useState(0.0);
+  
 
-  const sendNum1 = (number) => {
-    //console.log(current);
-    setNum1(number);
-    // console.log("num");
-    // console.log(number);
+  console.log('Num1: '+ num1)
+  console.log('Num2: '+ num2)
+  console.log('Current1: '+ currentNew1)
+  console.log('Current2: '+ currentNew2)
+
+  const handleChangeCurrent = (current1,number1) => {
+  
+    setCurrentNew1(current1)
+    
+    setNum1(number1)
+   
   };
-  const sendNum2 = (number) => {
-    //console.log(current);
-    setNum2(number);
-    // console.log("num");
-    // console.log(number);
+  const handleChangeCurrent2 = (current2,number2) => {
+
+    setCurrentNew2(current2)
+    setNum2(number2)
+
   };
+
+  // Convert = ()=>{
+
+
+
+  // }
+
 
   //
   
@@ -34,29 +50,28 @@ const Appear = () => {
 
         <div className="stolbic">
           <div className={classes.s1}>
-            <Select num1={num1} num2={num2}></Select>
+            <Select 
+            num2={num2} 
+            currentNew2 = {currentNew2}
+            onChangeCurrent={handleChangeCurrent}
+            ></Select>
 
             <div className={classes.text}>в</div>
 
-            <Select num1={num1} num2={num2}></Select>
+            <Select2 
+            num1={num1} 
+            currentNew1 = {currentNew1}
+            // val2 = {currentNew2}
+            onChangeCurrent={handleChangeCurrent2}
+            ></Select2>
           </div>
 
-          <div className={classes.f_select_money}>
-            <input
-              type="number"
-              value={num1}
-              onChange={(e) => sendNum1(e.target.value)}
-            />
+          
 
-            <div className={classes.text}>=</div>
-            <input
-              type="number"
-              value={num2}
-              onChange={(e) => sendNum2(e.target.value)}
-            />
-          </div>
+         
         </div>
       </div>
+     
       <div className={classes.but}>Поменять валюты местами</div>
     </div>
   );
